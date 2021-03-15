@@ -1,11 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SalesWebMvc.Models;
-using System;
-using System.Collections.Generic;
+using SalesWebMvc.Models.ViewModels;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace SalesWebMvc.Controllers
 {
     public class HomeController : Controller
@@ -25,6 +20,7 @@ namespace SalesWebMvc.Controllers
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
+            ViewData["Email"] = "paulostevo@gmail.com";
 
             return View();
         }
