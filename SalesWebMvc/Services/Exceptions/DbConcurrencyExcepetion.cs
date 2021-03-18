@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace SalesWebMvc.Services.Exceptions
 {
-    public class DbConcurrencyExcepetion : ApplicationException
+    public class DbConcurrencyException : ApplicationException
     {        
-            public DbConcurrencyExcepetion(string message) : base(message)
+            public DbConcurrencyException(string message) : base(message)
             {
 
             }
