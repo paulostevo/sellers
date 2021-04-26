@@ -16,11 +16,13 @@ namespace SalesWebMvc.Controllers
     {
         private readonly SellerService _sellerService;
         private readonly DepartmentService _departmentService;
+        private readonly CategoryService _categoryService;
 
-        public SellersController(SellerService sellerService, DepartmentService departmentService)
+        public SellersController(SellerService sellerService, DepartmentService departmentService ,CategoryService categoryService )
         {
             _sellerService = sellerService;
             _departmentService = departmentService;
+            _categoryService = categoryService;
         }
         public async Task<IActionResult> Index()
         {
@@ -34,7 +36,8 @@ namespace SalesWebMvc.Controllers
         public async  Task<IActionResult> Create()
         {
             var departments = await _departmentService.FindAllAsync();
-            var viewModel = new SellerFormViewModel { Departments = departments };
+            var categories = await _categoryService.FindAllAsync();
+            var viewModel = new SellerFormViewModel { Departments = departments , Categories = categories};
             return View(viewModel);
         }
 
@@ -46,7 +49,8 @@ namespace SalesWebMvc.Controllers
             if (!ModelState.IsValid)
             {
                 var departments = await _departmentService.FindAllAsync();
-                var viewModel = new SellerFormViewModel { Seller = seller, Departments = departments };
+                var categories = await _categoryService.FindAllAsync();
+                var viewModel = new SellerFormViewModel { Seller = seller, Departments = departments , Categories = categories };
                 return View(viewModel);
             }
             await _sellerService.InsertAsync(seller);
